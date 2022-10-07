@@ -1,0 +1,23 @@
+version: "2.4"
+services:
+  mysql80:
+    container_name: mysql80
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: qlalfqjsgh486
+      MYSQL_DATABASE: test
+    volumes:
+      - ~/db/docker/mysqldata:/var/lib/mysql
+    ports:
+      - "33060:3306"
+    networks:
+      - mysql80
+    restart: unless-stopped
+
+networks:
+  mysql80:
+    driver: bridge
+
+volumes:
+  mysql80:
