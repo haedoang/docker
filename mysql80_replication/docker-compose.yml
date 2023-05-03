@@ -8,7 +8,9 @@ services:
       MYSQL_ROOT_PASSWORD: qlalfqjsgh486
       MYSQL_DATABASE: test
     volumes:
-      - mysql_source:/var/lib/mysql
+      # - mysql_source:/var/lib/mysql
+      - ./source_my.cnf://etc/mysql/conf.d/my.cnf
+      - share:/share
     ports:
       - "33071:3306"
     networks:
@@ -23,7 +25,9 @@ services:
       MYSQL_ROOT_PASSWORD: qlalfqjsgh486
       MYSQL_DATABASE: test
     volumes:
-      - mysql_replica:/var/lib/mysql
+      #- mysql_replica:/var/lib/mysql
+      - ./replica_my.cnf:/etc/mysql/conf.d/my.cnf
+      - share:/share
     ports:
       - "33072:3306"
     networks:
@@ -36,6 +40,9 @@ networks:
   mysql_replication:
     driver: bridge
 
+# volumes:
+#   mysql_source:
+#   mysql_replica: 
+
 volumes:
-  mysql_source:
-  mysql_replica: 
+  share:
